@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://realpython.com/python3-object-oriented-programming/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="https://files.realpython.com/" rel="preconnect">
+<title>Object-Oriented Programming (OOP) in Python 3 – Real Python</title>
+<meta name="author" content="Real Python">
+<meta name="description" content="In this tutorial, you&#39;ll learn all about object-oriented programming (OOP) in Python. You&#39;ll learn the basics of the OOP paradigm and cover concepts like classes and inheritance. You&#39;ll also see to how instantiate an object from a class.">
+<meta name="keywords" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/font.32be62914940.css">
+<link rel="stylesheet" href="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/realpython.min.d61ad95b597e.css">
+<link rel="canonical" href="https://realpython.com/python3-object-oriented-programming/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg">
+<meta property="og:image" content="https://files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg">
+<meta name="twitter:creator" content="@realpython">
+<meta name="twitter:site" content="@realpython">
+<meta property="og:title" content="Object-Oriented Programming (OOP) in Python 3 – Real Python">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://realpython.com/python3-object-oriented-programming/">
+<meta property="og:description" content="In this tutorial, you&#39;ll learn all about object-oriented programming (OOP) in Python. You&#39;ll learn the basics of the OOP paradigm and cover concepts like classes and inheritance. You&#39;ll also see to how instantiate an object from a class.">
+<link href="https://realpython.com/static/favicon.68cbf4197b0c.png" rel="icon">
+<link href="https://realpython.com/atom.xml" rel="alternate" title="Real Python" type="application/atom+xml">
+<link rel="manifest" href="https://realpython.com/manifest.json">
+<script async="" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/fbevents.js.download"></script><script type="text/javascript" async="" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/6214500.js.download"></script><script async="" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/analytics.js.download"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35184939-1', 'auto', {'allowLinker': true});
+
+  
+
+  
+
+  
+  
+  ga('set', {
+    dimension1: false,
+    dimension2: false
+  });
+  
+
+  ga('send', 'pageview');
+  
+</script>
+<script async="" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/api.js.download"></script><script src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/count-data.js.download"></script></head>
+<body data-new-gr-c-s-check-loaded="14.992.0" data-gr-ext-installed="">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark flex-column nav-message">
+<div class="container flex-row">
+<a class="navbar-brand" href="https://realpython.com/">
+<img src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/real-python-logo.893c30edea53.svg" height="40" class="d-inline-block align-top" alt="Real Python">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav mr-2 flex-fill">
+<li class="nav-item">
+<a class="nav-link" href="https://realpython.com/start-here/">Start&nbsp;Here</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="https://realpython.com/python3-object-oriented-programming/#" id="navbarDropdownLibrary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="fa fa-graduation-cap"></span> Learn Python
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownLibrary">
+<a class="dropdown-item" href="https://realpython.com/" style="color: #ff7e73; line-height: 110%;"><i class="fa fa-fw mr-1 fa-graduation-cap"></i> Python Tutorials →<br><small class="text-secondary">In-depth articles and tutorials</small></a>
+<a class="dropdown-item" href="https://realpython.com/courses/" style="color: #abe5b1; line-height: 110%;"><i class="fa fa-fw mr-1 fa-film"></i> Video Courses →<br><small class="text-secondary">Step-by-step video lessons</small></a>
+<a class="dropdown-item" href="https://realpython.com/quizzes/" style="color: #abe0e5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-trophy"></i> Quizzes →<br><small class="text-secondary">Check your learning progress</small></a>
+<a class="dropdown-item" href="https://realpython.com/learning-paths/" style="color: #ffc873; line-height: 110%;"><i class="fa fa-fw mr-1 fa-map-o"></i> Learning Paths →<br><small class="text-secondary">Guided study plans for accelerated learning</small></a>
+<a class="dropdown-item" href="https://realpython.com/community/" style="color: #e5c6ab; line-height: 110%;"><i class="fa fa-fw mr-1 fa-slack"></i> Community →<br><small class="text-secondary">Learn with other Pythonistas</small></a>
+<a class="dropdown-item pb-3" href="https://realpython.com/tutorials/all/" style="color: #b8abe5; line-height: 110%;"><i class="fa fa-fw mr-1 fa-tags"></i> Topics →<br><small class="text-secondary">Focus on a specific area or skill level</small></a>
+<a class="dropdown-item border-top" href="https://realpython.com/account/join/"><i class="fa fa-fw fa-star text-warning"></i> Unlock All Content</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="https://realpython.com/python3-object-oriented-programming/#" id="navbarDropdownBooksCourses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Store
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownBooksCourses">
+<a class="dropdown-item" href="https://realpython.com/account/join/"><i class="fa fa-fw fa-star text-warning"></i> RP Membership</a>
+<a class="dropdown-item" href="https://realpython.com/products/python-basics-book/">Python Basics Book</a>
+<a class="dropdown-item" href="https://realpython.com/products/python-tricks-book/">Python Tricks Book</a>
+<a class="dropdown-item" href="https://realpython.com/products/cpython-internals-book/">CPython Internals Book</a>
+<a class="dropdown-item" href="https://realpython.com/products/real-python-course/">The Real Python Course</a>
+<a class="dropdown-item" href="https://realpython.com/products/managing-python-dependencies/">Managing Python Dependencies</a>
+<a class="dropdown-item" href="https://realpython.com/products/sublime-python/">Sublime Text + Python Setup</a>
+<a class="dropdown-item" href="https://realpython.com/products/pythonic-wallpapers/">Pythonic Wallpapers Pack</a>
+<a class="dropdown-item" href="https://nerdlettering.com/" target="_blank">Python Mugs, T-Shirts, and More</a>
+<a class="dropdown-item" href="https://www.pythonistacafe.com/" target="_blank">Pythonista Cafe Community</a>
+<a class="dropdown-item border-top" href="https://realpython.com/products/">Browse All »</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="https://realpython.com/python3-object-oriented-programming/#" id="navbarDropdownMore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+More
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+<a class="dropdown-item" href="https://realpython.com/newsletter/">Python Newsletter</a>
+<a class="dropdown-item" href="https://realpython.com/podcasts/rpp/">Python Podcast</a>
+<a class="dropdown-item" href="https://www.pythonjobshq.com/" target="_blank">Python Job Board</a>
+<a class="dropdown-item" href="https://realpython.com/team/">Meet the Team</a>
+<a class="dropdown-item" href="https://realpython.com/write-for-us/">Become a Tutorial Author</a>
+<a class="dropdown-item" href="https://realpython.com/become-an-instructor/">Become a Video Instructor</a>
+</div>
+</li>
+</ul>
+<div class="d-block d-xl-none">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="https://realpython.com/search" title="Search"><span class="d-block d-lg-none"><i class="fa fa-search"></i> Search</span><span class="d-none d-lg-block"><i class="fa fa-search"></i></span></a>
+</li>
+</ul>
+</div>
+<div class="d-none d-xl-flex align-items-center mr-2">
+<form class="form-inline" action="https://realpython.com/search" method="GET">
+<a class="js-search-form-submit position-absolute" href="https://realpython.com/search" title="Search"><i class="fa fa-search fa-fw text-muted pl-2"></i></a>
+<input class="search-field form-control form-control-md mr-sm-1 mr-lg-2 w-100" style="padding-left: 2rem;" maxlength="50" type="search" placeholder="Search" aria-label="Search" name="q">
+<input type="hidden" name="_from" value="nav">
+</form>
+</div>
+<ul class="navbar-nav">
+<li class="nav-item form-inline">
+<a class="ml-2 ml-lg-0 btn btn-sm btn-primary px-3" href="https://realpython.com/account/join/">Join</a>
+</li>
+<li class="nav-item">
+<a class="btn text-light" href="https://realpython.com/account/login/">Sign‑In</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="flex-row w-100" style="border-top: 1px dashed #ffc107 !important;">
+<div class="container">
+<a class="link-unstyled mx-auto" href="https://realpython.com/cpython-internals-launch?utm_source=realpython&amp;utm_medium=announcementbar&amp;utm_campaign=cpython-launch"><p class="my-1 small"><span class="text-warning">📘 <strong>CPython Internals: Your Guide to the Python 3 Interpreter</strong> — Save 45% Today (Book Launch Discount) →</span></p></a>
+</div>
+</div>
+</nav>
+<div class="container main-content">
+<div class="row justify-content-center">
+<div class="col-md-11 col-lg-8 article with-headerlinks">
+<figure class="embed-responsive embed-responsive-16by9">
+<img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" alt="OOP in Python 3" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg" width="1920" height="1080" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg&amp;w=480&amp;sig=de2e7c1e545e53d220fc57dcf8c1c43906e6c997 480w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg&amp;w=960&amp;sig=b47969c1efe592512c6b037f04417bdc92e791d1 960w, https://files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg 1920w" sizes="75vw">
+</figure>
+<h1>Object-Oriented Programming (OOP) in Python 3</h1>
+<p class="mb-0">
+<span class="text-muted">by <a class="text-muted" href="https://realpython.com/python3-object-oriented-programming/#author">David Amos</a>
+<span class="ml-2 fa fa-clock-o"></span> Jul 06, 2020
+<span class="ml-2 mr-1 fa fa-comments"></span><a class="text-muted" href="https://realpython.com/python3-object-oriented-programming/#reader-comments"><span class="disqus-comment-count" data-disqus-identifier="https://realpython.com/python3-object-oriented-programming/">99 Comments</span></a>
+<span class="ml-2 fa fa-tags"></span>
+<a href="https://realpython.com/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="https://realpython.com/tutorials/python/" class="badge badge-light text-muted">python</a>
+</span></p><div class="d-flex flex-row justify-content-between my-2">
+<div class="align-self-center">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check%20out%20this%20%23Python%20tutorial:%20Object-Oriented%20Programming%20%28OOP%29%20in%20Python%203%20by%20@realpython&amp;url=https%3A//realpython.com/python3-object-oriented-programming/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/python3-object-oriented-programming/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python%20article%20for%20you&amp;body=Check%20out%20this%20Python%20tutorial:%0A%0AObject-Oriented%20Programming%20%28OOP%29%20in%20Python%203%0A%0Ahttps%3A//realpython.com/python3-object-oriented-programming/" class="mr-1 badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+</div>
+<p></p>
+<div class="article-body">
+<div class="bg-light sidebar-module sidebar-module-inset" id="toc">
+<p class="h3 mb-2 text-muted">Table of Contents</p>
+<div class="toc">
+<ul>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#what-is-object-oriented-programming-in-python">What Is Object-Oriented Programming in Python?</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#define-a-class-in-python">Define a Class in Python</a><ul>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#classes-vs-instances">Classes vs Instances</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#how-to-define-a-class">How to Define a Class</a></li>
+</ul>
+</li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#instantiate-an-object-in-python">Instantiate an Object in Python</a><ul>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#class-and-instance-attributes">Class and Instance Attributes</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#instance-methods">Instance Methods</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#check-your-understanding">Check Your Understanding</a></li>
+</ul>
+</li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#inherit-from-other-classes-in-python">Inherit From Other Classes in Python</a><ul>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#dog-park-example">Dog Park Example</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#parent-classes-vs-child-classes">Parent Classes vs Child Classes</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#extend-the-functionality-of-a-parent-class">Extend the Functionality of a Parent Class</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#check-your-understanding_1">Check Your Understanding</a></li>
+</ul>
+</li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#conclusion">Conclusion</a></li>
+</ul>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:12.5%;"></div>
+<div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"><a href="https://srv.realpython.net/click/8941932849/?c=48874902176&amp;p=58946116052&amp;r=68902" rel="nofollow" target="_blank"><img src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/8dd76836b26ce79fa0afa59df2458580" style="max-width: 100%; max-height: 100%; width: 100%;"></a></div>
+</div>
+</div>
+<div class="border rounded p-3 card mb-2">
+<p class="mb-0"><span class="badge badge-pill badge-success"><i class="fa fa-play-circle" aria-hidden="true"></i> Watch Now</span> This tutorial has a related video course created by the Real Python team. Watch it together with the written tutorial to deepen your understanding: <a class="stretched-link text-success" href="https://realpython.com/courses/intro-object-oriented-programming-oop-python/"><strong>Intro to Object-Oriented Programming (OOP) in Python</strong></a></p>
+</div>
+<p><strong>Object-oriented programming</strong> (OOP) is a method of structuring a program by bundling related properties and behaviors into individual <strong>objects</strong>. In this tutorial, you’ll learn the basics of object-oriented programming in Python.</p>
+<p>Conceptually, objects are like the components of a system. Think of a program as a factory assembly line of sorts. At each step of the assembly line a system component processes some material, ultimately transforming raw material into a finished product.</p>
+<p>An object contains data, like the raw or preprocessed materials at each step on an assembly line, and behavior, like the action each assembly line component performs.</p>
+<p><strong>In this tutorial, you’ll learn how to:</strong></p>
+<ul>
+<li>Create a <strong>class</strong>, which is like a blueprint for creating an object</li>
+<li>Use classes to <strong>create new objects</strong></li>
+<li>Model systems with <strong>class inheritance</strong></li>
+</ul>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> This tutorial is adapted from the chapter “Object-Oriented Programming (OOP)” in <a href="https://realpython.com/products/python-basics-book/"><em>Python Basics: A Practical Introduction to Python 3</em></a>.</p>
+<p>The book uses Python’s built-in <a href="https://realpython.com/python-idle/">IDLE</a> editor to create and edit Python files and interact with the Python shell, so you will see occasional references to IDLE throughout this tutorial. However, you should have no problems running the example code from the editor and environment of your choice.</p>
+</div>
+<div class="alert alert-warning" role="alert">
+<p><strong markdown="1">Free Bonus:</strong> <a href="https://realpython.com/bonus/python-oop/" class="alert-link" data-toggle="modal" data-target="#modal-python-oop" data-focus="false" markdown="1">Click here to get access to a free Python OOP Cheat Sheet</a> that points you to the best tutorials, videos, and books to learn more about Object-Oriented Programming with Python.</p>
+</div>
+<div class="w-100 text-center js-needs-scaling" style="transform-origin: 0 0;"><div id="waldo-tag-4996"></div> <a class="small text-muted js-disclosure" href="https://realpython.com/account/join/" rel="nofollow" style="display: none;"> <i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div><section class="section2" id="what-is-object-oriented-programming-in-python"><h2>What Is Object-Oriented Programming in Python?<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#what-is-object-oriented-programming-in-python" title="Permanent link"></a></h2>
+<p>Object-oriented programming is a <a href="http://en.wikipedia.org/wiki/Programming_paradigm">programming paradigm</a> that provides a means of structuring programs so that properties and behaviors are bundled into individual <strong>objects</strong>.</p>
+<p>For instance, an object could represent a person with <strong>properties</strong> like a name, age, and address and <strong>behaviors</strong> such as walking, talking, breathing, and running. Or it could represent an email with properties like a recipient list, subject, and body and behaviors like adding attachments and sending. </p>
+<p>Put another way, object-oriented programming is an approach for modeling concrete, real-world things, like cars, as well as relations between things, like companies and employees, students and teachers, and so on. OOP models real-world entities as software objects that have some data associated with them and can perform certain functions.</p>
+<p>Another common programming paradigm is <strong>procedural programming</strong>, which structures a program like a recipe in that it provides a set of steps, in the form of functions and code blocks, that flow sequentially in order to complete a task.</p>
+<p>The key takeaway is that objects are at the center of object-oriented programming in Python, not only representing the data, as in procedural programming, but in the overall structure of the program as well.</p>
+</section><section class="section2" id="define-a-class-in-python"><h2>Define a Class in Python<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#define-a-class-in-python" title="Permanent link"></a></h2>
+<p>Primitive <a href="https://realpython.com/courses/python-data-types/">data structures</a>—like numbers, <a href="https://realpython.com/python-strings/">strings</a>, and lists—are designed to represent simple pieces of information, such as the cost of an apple, the name of a poem, or your favorite colors, respectively. What if you want to represent something more complex?</p>
+<p>For example, let’s say you want to track employees in an organization. You need to store some basic information about each employee, such as their name, age, position, and the year they started working.</p>
+<p>One way to do this is to represent each employee as a <a href="https://realpython.com/python-lists-tuples/">list</a>:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">kirk</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"James Kirk"</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="s2">"Captain"</span><span class="p">,</span> <span class="mi">2265</span><span class="p">]</span>
+<span class="n">spock</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Spock"</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="s2">"Science Officer"</span><span class="p">,</span> <span class="mi">2254</span><span class="p">]</span>
+<span class="n">mccoy</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Leonard McCoy"</span><span class="p">,</span> <span class="s2">"Chief Medical Officer"</span><span class="p">,</span> <span class="mi">2266</span><span class="p">]</span>
+</code></pre></div>
+<p>There are a number of issues with this approach.</p>
+<p>First, it can make larger code files more difficult to manage. If you reference <code>kirk[0]</code> several lines away from where the <code>kirk</code> list is declared, will you remember that the element with index <code>0</code> is the employee’s name? </p>
+<p>Second, it can introduce errors if not every employee has the same number of elements in the list. In the <code>mccoy</code> list above, the age is missing, so <code>mccoy[1]</code> will return <code>"Chief Medical Officer"</code> instead of Dr. McCoy’s age.</p>
+<p>A great way to make this type of code more manageable and more maintainable is to use <strong>classes</strong>.</p>
+<section class="section3" id="classes-vs-instances"><h3>Classes vs Instances<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#classes-vs-instances" title="Permanent link"></a></h3>
+<p>Classes are used to create user-defined data structures. Classes define functions called <strong>methods</strong>, which identify the behaviors and actions that an object created from the class can perform with its data.</p>
+<p>In this tutorial, you’ll create a <code>Dog</code> class that stores some information about the characteristics and behaviors that an individual dog can have.</p>
+<p>A class is a blueprint for how something should be defined. It doesn’t actually contain any data. The <code>Dog</code> class specifies that a name and an age are necessary for defining a dog, but it doesn’t contain the name or age of any specific dog.</p>
+<p>While the class is the blueprint, an <strong>instance</strong> is an object that is built from a class and contains real data. An instance of the <code>Dog</code> class is not a blueprint anymore. It’s an actual dog with a name, like Miles, who’s four years old.</p>
+<p>Put another way, a class is like a form or questionnaire. An instance is like a form that has been filled out with information. Just like many people can fill out the same form with their own unique information, many instances can be created from a single class.</p>
+<div class="w-100 text-center js-needs-scaling" style="transform-origin: 0 0;"><div id="waldo-tag-4998"></div> <a class="small text-muted js-disclosure" href="https://realpython.com/account/join/" rel="nofollow" style="display: none;"> <i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="how-to-define-a-class"><h3>How to Define a Class<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#how-to-define-a-class" title="Permanent link"></a></h3>
+<p>All class definitions start with the <code>class</code> keyword, which is followed by the name of the class and a colon. Any code that is indented below the class definition is considered part of the class’s body.</p>
+<p>Here’s an example of a <code>Dog</code> class:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<p>The body of the <code>Dog</code> class consists of a single statement: the <code>pass</code> keyword. <code>pass</code> is often used as a placeholder indicating where code will eventually go. It allows you to run this code without Python throwing an error.</p>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> Python class names are written in CapitalizedWords notation by convention. For example, a class for a specific breed of dog like the Jack Russell Terrier would be written as <code>JackRussellTerrier</code>.</p>
+</div>
+<p>The <code>Dog</code> class isn’t very interesting right now, so let’s spruce it up a bit by defining some properties that all <code>Dog</code> objects should have. There are a number of properties that we can choose from, including name, age, coat color, and breed. To keep things simple, we’ll just use name and age.</p>
+<p>The properties that all <code>Dog</code> objects must have are defined in a method called <code>.__init__()</code>. Every time a new <code>Dog</code> object is created, <code>.__init__()</code> sets the initial <strong>state</strong> of the object by assigning the values of the object’s properties. That is, <code>.__init__()</code> initializes each new instance of the class.</p>
+<p>You can give <code>.__init__()</code> any number of parameters, but the first parameter will always be a <a href="https://realpython.com/python-variables/">variable</a> called <code>self</code>. When a new class instance is created, the instance is automatically passed to the <code>self</code> parameter in <code>.__init__()</code> so that new <strong>attributes</strong> can be defined on the object.</p>
+<p>Let’s update the <code>Dog</code> class with an <code>.__init__()</code> method that creates <code>.name</code> and <code>.age</code> attributes:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+</code></pre></div>
+<p>Notice that the <code>.__init__()</code> method’s signature is indented four spaces. The body of the method is indented by eight spaces. This indentation is vitally important. It tells Python that the <code>.__init__()</code> method belongs to the <code>Dog</code> class.</p>
+<p>In the body of <code>.__init__()</code>, there are two statements using the <code>self</code> variable:</p>
+<ol>
+<li><strong><code>self.name = name</code></strong> creates an attribute called <code>name</code> and assigns to it the value of the <code>name</code> parameter.</li>
+<li><strong><code>self.age = age</code></strong> creates an attribute called <code>age</code> and assigns to it the value of the <code>age</code> parameter.</li>
+</ol>
+<p>Attributes created in <code>.__init__()</code> are called <strong>instance attributes</strong>. An instance attribute’s value is specific to a particular instance of the class. All <code>Dog</code> objects have a name and an age, but the values for the <code>name</code> and <code>age</code> attributes will vary depending on the <code>Dog</code> instance.</p>
+<p>On the other hand, <strong>class attributes</strong> are attributes that have the same value for all class instances. You can define a class attribute by assigning a value to a <a href="https://realpython.com/python-variables/">variable</a> name outside of <code>.__init__()</code>.</p>
+<p>For example, the following <code>Dog</code> class has a class attribute called <code>species</code> with the value <code>"Canis familiaris"</code>:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+    <span class="c1"># Class attribute</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">"Canis familiaris"</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+</code></pre></div>
+<p>Class attributes are defined directly beneath the first line of the class name and are indented by four spaces. They must always be assigned an initial value. When an instance of the class is created, class attributes are automatically created and assigned to their initial values.</p>
+<p>Use class attributes to define properties that should have the same value for every class instance. Use instance attributes for properties that vary from one instance to another.</p>
+<p>Now that we have a <code>Dog</code> class, let’s create some dogs!</p>
+<div class="w-100 text-center js-needs-scaling" style="transform-origin: 0 0;"><div id="waldo-tag-5000"></div> <a class="small text-muted js-disclosure" href="https://realpython.com/account/join/" rel="nofollow" style="display: none;"> <i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section></section><section class="section2" id="instantiate-an-object-in-python"><h2>Instantiate an Object in Python<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#instantiate-an-object-in-python" title="Permanent link"></a></h2>
+<p>Open IDLE’s interactive window and type the following:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+</code></pre></div>
+<p>This creates a new <code>Dog</code> class with no attributes or methods.</p>
+<p>Creating a new object from a class is called <strong>instantiating</strong> an object. You can instantiate a new <code>Dog</code> object by typing the name of the class, followed by opening and closing parentheses:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">Dog</span><span class="p">()</span>
+<span class="go">&lt;__main__.Dog object at 0x106702d30&gt;</span>
+</code></pre></div>
+<p>You now have a new <code>Dog</code> object at <code>0x106702d30</code>. This funny-looking string of letters and numbers is a <strong>memory address</strong> that indicates where the <code>Dog</code> object is stored in your computer’s memory. Note that the address you see on your screen will be different.</p>
+<p>Now instantiate a second <code>Dog</code> object:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">Dog</span><span class="p">()</span>
+<span class="go">&lt;__main__.Dog object at 0x0004ccc90&gt;</span>
+</code></pre></div>
+<p>The new <code>Dog</code> instance is located at a different memory address. That’s because it’s an entirely new instance and is completely unique from the first <code>Dog</code> object that you instantiated.</p>
+<p>To see this another way, type the following:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span>
+<span class="go">False</span>
+</code></pre></div>
+<p>In this code, you create two new <code>Dog</code> objects and assign them to the variables <code>a</code> and <code>b</code>. When you compare <code>a</code> and <code>b</code> using the <code>==</code> operator, the result is <code>False</code>. Even though <code>a</code> and <code>b</code> are both instances of the <code>Dog</code> class, they represent two distinct objects in memory.</p>
+<section class="section3" id="class-and-instance-attributes"><h3>Class and Instance Attributes<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#class-and-instance-attributes" title="Permanent link"></a></h3>
+<p>Now create a new <code>Dog</code> class with a class attribute called <code>.species</code> and two instance attributes called <code>.name</code> and <code>.age</code>:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">species</span> <span class="o">=</span> <span class="s2">"Canis familiaris"</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+</code></pre></div>
+<p>To instantiate objects of this <code>Dog</code> class, you need to provide values for the <code>name</code> and <code>age</code>. If you don’t, then Python raises a <code>TypeError</code>:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">Dog</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;pyshell#6&gt;"</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+    <span class="n">Dog</span><span class="p">()</span>
+<span class="gr">TypeError</span>: <span class="n">__init__() missing 2 required positional arguments: 'name' and 'age'</span>
+</code></pre></div>
+<p>To pass arguments to the <code>name</code> and <code>age</code> parameters, put values into the parentheses after the class name:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">buddy</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s2">"Buddy"</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s2">"Miles"</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</code></pre></div>
+<p>This creates two new <code>Dog</code> instances—one for a nine-year-old dog named Buddy and one for a four-year-old dog named Miles.</p>
+<p>The <code>Dog</code> class’s <code>.__init__()</code> method has three parameters, so why are only two arguments passed to it in the example?</p>
+<p>When you instantiate a <code>Dog</code> object, Python creates a new instance and passes it to the first parameter of <code>.__init__()</code>. This essentially removes the <code>self</code> parameter, so you only need to worry about the <code>name</code> and <code>age</code> parameters.</p>
+<p>After you create the <code>Dog</code> instances, you can access their instance attributes using <strong>dot notation</strong>:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">buddy</span><span class="o">.</span><span class="n">name</span>
+<span class="go">'Buddy'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">buddy</span><span class="o">.</span><span class="n">age</span>
+<span class="go">9</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span><span class="o">.</span><span class="n">name</span>
+<span class="go">'Miles'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span><span class="o">.</span><span class="n">age</span>
+<span class="go">4</span>
+</code></pre></div>
+<p>You can access class attributes the same way:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">buddy</span><span class="o">.</span><span class="n">species</span>
+<span class="go">'Canis familiaris'</span>
+</code></pre></div>
+<p>One of the biggest advantages of using classes to organize data is that instances are guaranteed to have the attributes you expect. All <code>Dog</code> instances have <code>.species</code>, <code>.name</code>, and <code>.age</code> attributes, so you can use those attributes with confidence knowing that they will always return a value.</p>
+<p>Although the attributes are guaranteed to exist, their values <em>can</em> be changed dynamically:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">buddy</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">buddy</span><span class="o">.</span><span class="n">age</span>
+<span class="go">10</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span><span class="o">.</span><span class="n">species</span> <span class="o">=</span> <span class="s2">"Felis silvestris"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span><span class="o">.</span><span class="n">species</span>
+<span class="go">'Felis silvestris'</span>
+</code></pre></div>
+<p>In this example, you change the <code>.age</code> attribute of the <code>buddy</code> object to <code>10</code>. Then you change the <code>.species</code> attribute of the <code>miles</code> object to <code>"Felis silvestris"</code>, which is a species of cat. That makes Miles a pretty strange dog, but it is valid Python!</p>
+<p>The key takeaway here is that custom objects are mutable by default. An object is mutable if it can be altered dynamically. For example, lists and <a href="https://realpython.com/python-dicts/">dictionaries</a> are mutable, but strings and tuples are immutable.</p>
+<div class="w-100 text-center js-needs-scaling" style="transform-origin: 0 0;"><div id="waldo-tag-5002"></div> <a class="small text-muted js-disclosure" href="https://realpython.com/account/join/" rel="nofollow" style="display: none;"> <i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="instance-methods"><h3>Instance Methods<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#instance-methods" title="Permanent link"></a></h3>
+<p><strong>Instance methods</strong> are functions that are defined inside a class and can only be called from an instance of that class. Just like <code>.__init__()</code>, an instance method’s first parameter is always <code>self</code>.</p>
+<p>Open a new editor window in IDLE and type in the following <code>Dog</code> class:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">"Canis familiaris"</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+
+    <span class="c1"># Instance method</span>
+    <span class="k">def</span> <span class="nf">description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old"</span>
+
+    <span class="c1"># Another instance method</span>
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sound</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> says </span><span class="si">{</span><span class="n">sound</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div>
+<p>This <code>Dog</code> class has two instance methods: </p>
+<ol>
+<li><strong><code>.description()</code></strong> returns a string displaying the name and age of the dog.</li>
+<li><strong><code>.speak()</code></strong> has one parameter called <code>sound</code> and returns a string containing the dog’s name and the sound the dog makes.</li>
+</ol>
+<p>Save the modified <code>Dog</code> class to a file called <code>dog.py</code> and press <span class="keys"><kbd class="key-f5">F5</kbd></span> to run the program. Then open the interactive window and type the following to see your instance methods in action:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s2">"Miles"</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span><span class="o">.</span><span class="n">description</span><span class="p">()</span>
+<span class="go">'Miles is 4 years old'</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span><span class="o">.</span><span class="n">speak</span><span class="p">(</span><span class="s2">"Woof Woof"</span><span class="p">)</span>
+<span class="go">'Miles says Woof Woof'</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span><span class="o">.</span><span class="n">speak</span><span class="p">(</span><span class="s2">"Bow Wow"</span><span class="p">)</span>
+<span class="go">'Miles says Bow Wow'</span>
+</code></pre></div>
+<p>In the above <code>Dog</code> class, <code>.description()</code> returns a string containing information about the <code>Dog</code> instance <code>miles</code>. When writing your own classes, it’s a good idea to have a method that returns a string containing useful information about an instance of the class. However, <code>.description()</code> isn’t the most <a href="https://realpython.com/learning-paths/writing-pythonic-code/">Pythonic</a> way of doing this.</p>
+<p>When you create a <code>list</code> object, you can use <code>print()</code> to display a string that looks like the list:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Fletcher"</span><span class="p">,</span> <span class="s2">"David"</span><span class="p">,</span> <span class="s2">"Dan"</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+<span class="go">['Fletcher', 'David', 'Dan']</span>
+</code></pre></div>
+<p>Let’s see what happens when you <code>print()</code> the <code>miles</code> object:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">miles</span><span class="p">)</span>
+<span class="go">&lt;__main__.Dog object at 0x00aeff70&gt;</span>
+</code></pre></div>
+<p>When you <code>print(miles)</code>, you get a cryptic looking message telling you that <code>miles</code> is a <code>Dog</code> object at the memory address <code>0x00aeff70</code>. This message isn’t very helpful. You can change what gets printed by defining a special instance method called <code>.__str__()</code>.</p>
+<p>In the editor window, change the name of the <code>Dog</code> class’s <code>.description()</code> method to <code>.__str__()</code>:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+    <span class="c1"># Leave other parts of Dog class as-is</span>
+
+    <span class="c1"># Replace .description() with __str__()</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old"</span>
+</code></pre></div>
+<p>Save the file and press <span class="keys"><kbd class="key-f5">F5</kbd></span>. Now, when you <code>print(miles)</code>, you get a much friendlier output:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s2">"Miles"</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">miles</span><span class="p">)</span>
+<span class="go">'Miles is 4 years old'</span>
+</code></pre></div>
+<p>Methods like <code>.__init__()</code> and <code>.__str__()</code> are called <strong>dunder methods</strong> because they begin and end with double underscores. There are many dunder methods that you can use to customize classes in Python. Although too advanced a topic for a beginning Python book, understanding dunder methods is an important part of mastering object-oriented programming in Python.</p>
+<p>In the next section, you’ll see how to take your knowledge one step further and create classes from other classes.</p>
+<div class="w-100 text-center js-needs-scaling" style="transform-origin: 0 0;"><div id="waldo-tag-5004"></div> <a class="small text-muted js-disclosure" href="https://realpython.com/account/join/" rel="nofollow" style="display: none;"> <i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="check-your-understanding"><h3>Check Your Understanding<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#check-your-understanding" title="Permanent link"></a></h3>
+<p>Expand the block below to check your understanding:</p>
+<div class="card mb-3" id="collapse_cardc5ca41">
+<div class="card-header border-0">
+<p class="m-0"><button class="btn w-100" data-toggle="collapse" data-target="#collapsec5ca41" aria-expanded="false" aria-controls="collapsec5ca41" markdown="1"><span class="float-left" markdown="1">Exercise: Create a Car Class</span><span class="float-right text-muted">Show/Hide</span></button></p>
+</div>
+<div class="collapse" data-parent="#collapse_cardc5ca41" id="collapsec5ca41">
+<div class="card-body">
+<p>Create a <code>Car</code> class with two instance attributes:</p>
+<ol>
+<li><code>.color</code>, which stores the name of the car’s color as a string</li>
+<li><code>.mileage</code>, which stores the number of miles on the car as an integer</li>
+</ol>
+<p>Then instantiate two <code>Car</code> objects—a blue car with 20,000 miles and a red car with 30,000 miles—and print out their colors and mileage. Your output should look like this:</p>
+<div class="highlight sh"><pre><span></span><code><span class="go">The blue car has 20,000 miles.</span>
+<span class="go">The red car has 30,000 miles.</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>You can expand the block below to see a solution:</p>
+<div class="card mb-3" id="collapse_cardedfa2e">
+<div class="card-header border-0">
+<p class="m-0"><button class="btn w-100" data-toggle="collapse" data-target="#collapseedfa2e" aria-expanded="false" aria-controls="collapseedfa2e" markdown="1"><span class="float-left" markdown="1">Solution: Create a Car Class</span><span class="float-right text-muted">Show/Hide</span></button></p>
+</div>
+<div class="collapse" data-parent="#collapse_cardedfa2e" id="collapseedfa2e">
+<div class="card-body">
+<p>First, create a <code>Car</code> class with <code>.color</code> and <code>.mileage</code> instance attributes:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">mileage</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mileage</span> <span class="o">=</span> <span class="n">mileage</span>
+</code></pre></div>
+<p>The <code>color</code> and <code>mileage</code> parameters of <code>.__init__()</code> are assigned to <code>self.color</code> and <code>self.mileage</code>, which creates the two instance attributes.</p>
+<p>Now you can create the two <code>Car</code> instances:</p>
+<div class="highlight python"><pre><span></span><code><span class="n">blue_car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">mileage</span><span class="o">=</span><span class="mi">20_000</span><span class="p">)</span>
+<span class="n">red_car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">mileage</span><span class="o">=</span><span class="mi">30_000</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>blue_car</code> instance is created by passing the value <code>"blue"</code> to the <code>color</code> parameter and <code>20_000</code> to the <code>mileage</code> parameter. Similarly, <code>red_car</code> is created with the values <code>"red"</code> and <code>30_000</code>.</p>
+<p>To print the color and mileage of each <code>Car</code> object, you can loop over a <code>tuple</code> containing both objects:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="p">(</span><span class="n">blue_car</span><span class="p">,</span> <span class="n">red_car</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The </span><span class="si">{</span><span class="n">car</span><span class="o">.</span><span class="n">color</span><span class="si">}</span><span class="s2"> car has </span><span class="si">{</span><span class="n">car</span><span class="o">.</span><span class="n">mileage</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> miles"</span><span class="p">)</span>
+</code></pre></div>
+<p>The <a href="https://realpython.com/python-f-strings/">f-string</a> in the above <code>for</code> loop inserts the <code>.color</code> and <code>.mileage</code> attributes into the string and uses the <code>:,</code> <a href="https://realpython.com/python-formatted-output/#f-string-formatting">format specifier</a> to print the mileage grouped by thousands and separated with a comma.</p>
+<p>The final output looks like this:</p>
+<div class="highlight sh"><pre><span></span><code><span class="go">The blue car has 20,000 miles.</span>
+<span class="go">The red car has 30,000 miles.</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>When you’re ready, you can move on to the next section.</p>
+</section></section><section class="section2" id="inherit-from-other-classes-in-python"><h2>Inherit From Other Classes in Python<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#inherit-from-other-classes-in-python" title="Permanent link"></a></h2>
+<p><a href="https://realpython.com/inheritance-composition-python/">Inheritance</a> is the process by which one class takes on the attributes and methods of another. Newly formed classes are called <strong>child classes</strong>, and the classes that child classes are derived from are called <strong>parent classes</strong>.</p>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> This tutorial is adapted from the chapter “Object-Oriented Programming (OOP)” in <a href="https://realpython.com/products/python-basics-book/"><em>Python Basics: A Practical Introduction to Python 3</em></a>. If you enjoy what you’re reading, then be sure to check out <a href="https://realpython.com/products/python-basics-book/">the rest of the book</a>.</p>
+</div>
+<p>Child classes can override or extend the attributes and methods of parent classes. In other words, child classes inherit all of the parent’s attributes and methods but can also specify attributes and methods that are unique to themselves.</p>
+<p>Although the analogy isn’t perfect, you can think of object inheritance sort of like genetic inheritance.</p>
+<p>You may have inherited your hair color from your mother. It’s an attribute you were born with. Let’s say you decide to color your hair purple. Assuming your mother doesn’t have purple hair, you’ve just <strong>overridden</strong> the hair color attribute that you inherited from your mom.</p>
+<p>You also inherit, in a sense, your language from your parents. If your parents speak English, then you’ll also speak English. Now imagine you decide to learn a second language, like German. In this case you’ve <strong>extended</strong> your attributes because you’ve added an attribute that your parents don’t have.</p>
+<section class="section3" id="dog-park-example"><h3>Dog Park Example<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#dog-park-example" title="Permanent link"></a></h3>
+<p>Pretend for a moment that you’re at a dog park. There are many dogs of different breeds at the park, all engaging in various dog behaviors.</p>
+<p>Suppose now that you want to model the dog park with Python classes. The <code>Dog</code> class that you wrote in the previous section can distinguish dogs by name and age but not by breed.</p>
+<p>You could modify the <code>Dog</code> class in the editor window by adding a <code>.breed</code> attribute:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">"Canis familiaris"</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">breed</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">breed</span> <span class="o">=</span> <span class="n">breed</span>
+</code></pre></div>
+<p>The instance methods defined earlier are omitted here because they aren’t important for this discussion.</p>
+<p>Press <span class="keys"><kbd class="key-f5">F5</kbd></span> to save the file. Now you can model the dog park by instantiating a bunch of different dogs in the interactive window:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s2">"Miles"</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"Jack Russell Terrier"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">buddy</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s2">"Buddy"</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">"Dachshund"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jack</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s2">"Jack"</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"Bulldog"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jim</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s2">"Jim"</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"Bulldog"</span><span class="p">)</span>
+</code></pre></div>
+<p>Each breed of dog has slightly different behaviors. For example, bulldogs have a low bark that sounds like <em>woof</em>, but dachshunds have a higher-pitched bark that sounds more like <em>yap</em>.</p>
+<p>Using just the <code>Dog</code> class, you must supply a string for the <code>sound</code> argument of <code>.speak()</code> every time you call it on a <code>Dog</code> instance:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">buddy</span><span class="o">.</span><span class="n">speak</span><span class="p">(</span><span class="s2">"Yap"</span><span class="p">)</span>
+<span class="go">'Buddy says Yap'</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jim</span><span class="o">.</span><span class="n">speak</span><span class="p">(</span><span class="s2">"Woof"</span><span class="p">)</span>
+<span class="go">'Jim says Woof'</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jack</span><span class="o">.</span><span class="n">speak</span><span class="p">(</span><span class="s2">"Woof"</span><span class="p">)</span>
+<span class="go">'Jack says Woof'</span>
+</code></pre></div>
+<p>Passing a string to every call to <code>.speak()</code> is repetitive and inconvenient. Moreover, the string representing the sound that each <code>Dog</code> instance makes should be determined by its <code>.breed</code> attribute, but here you have to manually pass the correct string to <code>.speak()</code> every time it’s called.</p>
+<p>You can simplify the experience of working with the <code>Dog</code> class by creating a child class for each breed of dog. This allows you to extend the functionality that each child class inherits, including specifying a default argument for <code>.speak()</code>.</p>
+<div class="w-100 text-center js-needs-scaling" style="transform-origin: 0 0;"><div id="waldo-tag-5257"></div> <a class="small text-muted js-disclosure" href="https://realpython.com/account/join/" rel="nofollow" style="display: none;"> <i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="parent-classes-vs-child-classes"><h3>Parent Classes vs Child Classes<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#parent-classes-vs-child-classes" title="Permanent link"></a></h3>
+<p>Let’s create a child class for each of the three breeds mentioned above: Jack Russell Terrier, Dachshund, and Bulldog.</p>
+<p>For reference, here’s the full definition of the <code>Dog</code> class:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">"Canis familiaris"</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old"</span>
+
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sound</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> says </span><span class="si">{</span><span class="n">sound</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div>
+<p>Remember, to create a child class, you create new class with its own name and then put the name of the parent class in parentheses. Add the following to the <code>dog.py</code> file to create three new child classes of the <code>Dog</code> class:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">JackRussellTerrier</span><span class="p">(</span><span class="n">Dog</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Dachshund</span><span class="p">(</span><span class="n">Dog</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Bulldog</span><span class="p">(</span><span class="n">Dog</span><span class="p">):</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<p>Press <span class="keys"><kbd class="key-f5">F5</kbd></span> to save and run the file. With the child classes defined, you can now instantiate some dogs of specific breeds in the interactive window:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span> <span class="o">=</span> <span class="n">JackRussellTerrier</span><span class="p">(</span><span class="s2">"Miles"</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">buddy</span> <span class="o">=</span> <span class="n">Dachshund</span><span class="p">(</span><span class="s2">"Buddy"</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jack</span> <span class="o">=</span> <span class="n">Bulldog</span><span class="p">(</span><span class="s2">"Jack"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jim</span> <span class="o">=</span> <span class="n">Bulldog</span><span class="p">(</span><span class="s2">"Jim"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+<p>Instances of child classes inherit all of the attributes and methods of the parent class:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span><span class="o">.</span><span class="n">species</span>
+<span class="go">'Canis familiaris'</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">buddy</span><span class="o">.</span><span class="n">name</span>
+<span class="go">'Buddy'</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">jack</span><span class="p">)</span>
+<span class="go">Jack is 3 years old</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jim</span><span class="o">.</span><span class="n">speak</span><span class="p">(</span><span class="s2">"Woof"</span><span class="p">)</span>
+<span class="go">'Jim says Woof'</span>
+</code></pre></div>
+<p>To determine which class a given object belongs to, you can use the built-in <code>type()</code>:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">miles</span><span class="p">)</span>
+<span class="go">&lt;class '__main__.JackRussellTerrier'&gt;</span>
+</code></pre></div>
+<p>What if you want to determine if <code>miles</code> is also an instance of the <code>Dog</code> class? You can do this with the built-in <code>isinstance()</code>:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">miles</span><span class="p">,</span> <span class="n">Dog</span><span class="p">)</span>
+<span class="go">True</span>
+</code></pre></div>
+<p>Notice that <code>isinstance()</code> takes two arguments, an object and a class. In the example above, <code>isinstance()</code> checks if <code>miles</code> is an instance of the <code>Dog</code> class and returns <code>True</code>.</p>
+<p>The <code>miles</code>, <code>buddy</code>, <code>jack</code>, and <code>jim</code> objects are all <code>Dog</code> instances, but <code>miles</code> is not a <code>Bulldog</code> instance, and <code>jack</code> is not a <code>Dachshund</code> instance:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">miles</span><span class="p">,</span> <span class="n">Bulldog</span><span class="p">)</span>
+<span class="go">False</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">jack</span><span class="p">,</span> <span class="n">Dachshund</span><span class="p">)</span>
+<span class="go">False</span>
+</code></pre></div>
+<p>More generally, all objects created from a child class are instances of the parent class, although they may not be instances of other child classes.</p>
+<p>Now that you’ve created child classes for some different breeds of dogs, let’s give each breed its own sound.</p>
+</section><section class="section3" id="extend-the-functionality-of-a-parent-class"><h3>Extend the Functionality of a Parent Class<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#extend-the-functionality-of-a-parent-class" title="Permanent link"></a></h3>
+<p>Since different breeds of dogs have slightly different barks, you want to provide a default value for the <code>sound</code> argument of their respective <code>.speak()</code> methods. To do this, you need to override <code>.speak()</code> in the class definition for each breed.</p>
+<p>To override a method defined on the parent class, you define a method with the same name on the child class. Here’s what that looks like for the <code>JackRussellTerrier</code> class:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">JackRussellTerrier</span><span class="p">(</span><span class="n">Dog</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sound</span><span class="o">=</span><span class="s2">"Arf"</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> says </span><span class="si">{</span><span class="n">sound</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div>
+<p>Now <code>.speak()</code> is defined on the <code>JackRussellTerrier</code> class with the default argument for <code>sound</code> set to <code>"Arf"</code>.</p>
+<p>Update <code>dog.py</code> with the new <code>JackRussellTerrier</code> class and press <span class="keys"><kbd class="key-f5">F5</kbd></span> to save and run the file. You can now call <code>.speak()</code> on a <code>JackRussellTerrier</code> instance without passing an argument to <code>sound</code>:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span> <span class="o">=</span> <span class="n">JackRussellTerrier</span><span class="p">(</span><span class="s2">"Miles"</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span><span class="o">.</span><span class="n">speak</span><span class="p">()</span>
+<span class="go">'Miles says Arf'</span>
+</code></pre></div>
+<p>Sometimes dogs make different barks, so if Miles gets angry and growls, you can still call <code>.speak()</code> with a different sound:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span><span class="o">.</span><span class="n">speak</span><span class="p">(</span><span class="s2">"Grrr"</span><span class="p">)</span>
+<span class="go">'Miles says Grrr'</span>
+</code></pre></div>
+<p>One thing to keep in mind about class inheritance is that changes to the parent class automatically propagate to child classes. This occurs as long as the attribute or method being changed isn’t overridden in the child class.</p>
+<p>For example, in the editor window, change the string returned by <code>.speak()</code> in the <code>Dog</code> class:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+    <span class="c1"># Leave other attributes and methods as they are</span>
+
+    <span class="c1"># Change the string returned by .speak()</span>
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sound</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> barks: </span><span class="si">{</span><span class="n">sound</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div>
+<p>Save the file and press <span class="keys"><kbd class="key-f5">F5</kbd></span>. Now, when you create a new <code>Bulldog</code> instance named <code>jim</code>, <code>jim.speak()</code> returns the new string:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">jim</span> <span class="o">=</span> <span class="n">Bulldog</span><span class="p">(</span><span class="s2">"Jim"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jim</span><span class="o">.</span><span class="n">speak</span><span class="p">(</span><span class="s2">"Woof"</span><span class="p">)</span>
+<span class="go">'Jim barks: Woof'</span>
+</code></pre></div>
+<p>However, calling <code>.speak()</code> on a <code>JackRussellTerrier</code> instance won’t show the new style of output:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span> <span class="o">=</span> <span class="n">JackRussellTerrier</span><span class="p">(</span><span class="s2">"Miles"</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span><span class="o">.</span><span class="n">speak</span><span class="p">()</span>
+<span class="go">'Miles says Arf'</span>
+</code></pre></div>
+<p>Sometimes it makes sense to completely override a method from a parent class. But in this instance, we don’t want the <code>JackRussellTerrier</code> class to lose any changes that might be made to the formatting of the output string of <code>Dog.speak()</code>.</p>
+<p>To do this, you still need to define a <code>.speak()</code> method on the child <code>JackRussellTerrier</code> class. But instead of explicitly defining the output string, you need to call the <code>Dog</code> class’s <code>.speak()</code> <em>inside</em> of the child class’s <code>.speak()</code> using the same arguments that you passed to <code>JackRussellTerrier.speak()</code>.</p>
+<p>You can access the parent class from inside a method of a child class by using <a href="https://realpython.com/python-super/"><code>super()</code></a>:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">JackRussellTerrier</span><span class="p">(</span><span class="n">Dog</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sound</span><span class="o">=</span><span class="s2">"Arf"</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">speak</span><span class="p">(</span><span class="n">sound</span><span class="p">)</span>
+</code></pre></div>
+<p>When you call <code>super().speak(sound)</code> inside <code>JackRussellTerrier</code>, Python searches the parent class, <code>Dog</code>, for a <code>.speak()</code> method and calls it with the variable <code>sound</code>.</p>
+<p>Update <code>dog.py</code> with the new <code>JackRussellTerrier</code> class. Save the file and press <span class="keys"><kbd class="key-f5">F5</kbd></span> so you can test it in the interactive window:</p>
+<div class="highlight python repl"><span class="repl-toggle" title="Toggle REPL prompts and output">&gt;&gt;&gt;</span><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span> <span class="o">=</span> <span class="n">JackRussellTerrier</span><span class="p">(</span><span class="s2">"Miles"</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">miles</span><span class="o">.</span><span class="n">speak</span><span class="p">()</span>
+<span class="go">'Miles barks: Arf'</span>
+</code></pre></div>
+<p>Now when you call <code>miles.speak()</code>, you’ll see output reflecting the new formatting in the <code>Dog</code> class.</p>
+<div class="alert alert-primary" role="alert">
+<p><strong>Note:</strong> In the above examples, the <strong>class hierarchy</strong> is very straightforward. The <code>JackRussellTerrier</code> class has a single parent class, <code>Dog</code>. In real-world examples, the class hierarchy can get quite complicated.</p>
+<p><code>super()</code> does much more than just search the parent class for a method or an attribute. It traverses the entire class hierarchy for a matching method or attribute. If you aren’t careful, <code>super()</code> can have surprising results.</p>
+</div>
+<div class="w-100 text-center js-needs-scaling" style="transform-origin: 0 0;"><div id="waldo-tag-5259"></div> <a class="small text-muted js-disclosure" href="https://realpython.com/account/join/" rel="nofollow" style="display: none;"> <i aria-hidden="true" class="fa fa-info-circle"> </i> Remove ads</a></div></section><section class="section3" id="check-your-understanding_1"><h3>Check Your Understanding<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#check-your-understanding_1" title="Permanent link"></a></h3>
+<p>Expand the block below to check your understanding:</p>
+<div class="card mb-3" id="collapse_card3df64b">
+<div class="card-header border-0">
+<p class="m-0"><button class="btn w-100" data-toggle="collapse" data-target="#collapse3df64b" aria-expanded="false" aria-controls="collapse3df64b" markdown="1"><span class="float-left" markdown="1">Exercise: Class Inheritance</span><span class="float-right text-muted">Show/Hide</span></button></p>
+</div>
+<div class="collapse" data-parent="#collapse_card3df64b" id="collapse3df64b">
+<div class="card-body">
+<p>Create a <code>GoldenRetriever</code> class that inherits from the <code>Dog</code> class. Give the <code>sound</code> argument of <code>GoldenRetriever.speak()</code> a default value of <code>"Bark"</code>. Use the following code for your parent <code>Dog</code> class:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">"Canis familiaris"</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old"</span>
+
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sound</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> says </span><span class="si">{</span><span class="n">sound</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>You can expand the block below to see a solution:</p>
+<div class="card mb-3" id="collapse_card755c5d">
+<div class="card-header border-0">
+<p class="m-0"><button class="btn w-100" data-toggle="collapse" data-target="#collapse755c5d" aria-expanded="false" aria-controls="collapse755c5d" markdown="1"><span class="float-left" markdown="1">Solution: Class Inheritance</span><span class="float-right text-muted">Show/Hide</span></button></p>
+</div>
+<div class="collapse" data-parent="#collapse_card755c5d" id="collapse755c5d">
+<div class="card-body">
+<p>Create a class called <code>GoldenRetriever</code> that inherits from the <code>Dog</code> class and overrides the <code>.speak()</code> method:</p>
+<div class="highlight python"><pre><span></span><code><span class="k">class</span> <span class="nc">GoldenRetriever</span><span class="p">(</span><span class="n">Dog</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sound</span><span class="o">=</span><span class="s2">"Bark"</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">speak</span><span class="p">(</span><span class="n">sound</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>sound</code> parameter in <code>GoldenRetriever.speak()</code> is given a default value of <code>"Bark"</code>. Then <code>super()</code> is used to call the parent class’s <code>.speak()</code> method with the same argument passed to <code>sound</code> as the <code>GoldenRetriever</code> class’s <code>.speak()</code> method.</p>
+</div>
+</div>
+</div>
+</section></section><section class="section2" id="conclusion"><h2>Conclusion<a class="headerlink" href="https://realpython.com/python3-object-oriented-programming/#conclusion" title="Permanent link"></a></h2>
+<p>In this tutorial, you learned about object-oriented programming (OOP) in Python. Most modern programming languages, such as <a href="https://go.java/">Java</a>, <a href="https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/">C#</a>, and <a href="https://www.cplusplus.com/info/description/">C++</a>, follow OOP principles, so the knowledge you gained here will be applicable no matter where your programming career takes you.</p>
+<p><strong>In this tutorial, you learned how to:</strong></p>
+<ul>
+<li>Define a <strong>class</strong>, which is a sort of blueprint for an object</li>
+<li>Instantiate an <strong>object</strong> from a class </li>
+<li>Use <strong>attributes</strong> and <strong>methods</strong> to define the <strong>properties</strong> and <strong>behaviors</strong> of an object </li>
+<li>Use <strong>inheritance</strong> to create <strong>child classes</strong> from a <strong>parent class</strong></li>
+<li>Reference a method on a parent class using <strong><code>super()</code></strong> </li>
+<li>Check if an object inherits from another class using <strong><code>isinstance()</code></strong></li>
+</ul>
+<p>If you enjoyed what you learned in this sample from <a href="https://realpython.com/products/python-basics-book/"><em>Python Basics: A Practical Introduction to Python 3</em></a>, then be sure to check out <a href="https://realpython.com/products/python-basics-book/">the rest of the book</a>.</p>
+</section>
+<div class="border rounded p-3 card mb-2">
+<p class="mb-0"><span class="badge badge-pill badge-success"><i class="fa fa-play-circle" aria-hidden="true"></i> Watch Now</span> This tutorial has a related video course created by the Real Python team. Watch it together with the written tutorial to deepen your understanding: <a class="stretched-link text-success" href="https://realpython.com/courses/intro-object-oriented-programming-oop-python/"><strong>Intro to Object-Oriented Programming (OOP) in Python</strong></a></p>
+</div>
+</div>
+<div class="card mt-4 mb-4 bg-secondary">
+<p class="card-header h3 text-center bg-light">🐍 Python Tricks 💌</p>
+<div class="card-body">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-sm-7">
+<p>Get a short &amp; sweet <strong>Python Trick</strong> delivered to your inbox every couple of days. No spam ever. Unsubscribe any time. Curated by the Real Python team.</p>
+</div>
+<div class="col-xs-12 col-sm-5">
+<img class="img-fluid rounded mb-3" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/pytrick-dict-merge.webp" width="738" height="490" alt="Python Tricks Dictionary Merge">
+</div>
+</div>
+<div class="row mb-3">
+<form class="col-12" action="https://realpython.com/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="eBWmXrsn6Zjg4merqgS4ow9H1OegSRoJ5eei6JoG6TQs50IdnoYX1eTeRn7u9BAX">
+<input type="hidden" name="slug" value="static-python-tricks-footer">
+<div class="form-group">
+<input name="email" type="email" class="form-control form-control-lg" placeholder="Email Address" required="">
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-lg btn-block">Send Me Python Tricks »</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="card mt-3" id="author">
+<p class="card-header h3">About <strong>David Amos</strong></p>
+<div class="card-body">
+<div class="container p-0">
+<div class="row">
+<div class="col-12 col-md-3 align-self-center">
+<a href="https://realpython.com/team/damos/"><img loading="lazy" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/saved_resource" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/me-small.f5f49f1c48e1.jpg&amp;w=100&amp;h=100&amp;mode=crop&amp;sig=4e832705873c990ccc3fe2459dcd2b081613ecb1 100w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/me-small.f5f49f1c48e1.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=ecc773a7a56114ed2831d281156669f0d7f1ab68 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/me-small.f5f49f1c48e1.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=522ebc378492fd2228f8a9980bf89544b51aba2c 400w" sizes="25vw" width="400" height="400" class="d-block d-md-none rounded-circle img-fluid w-33 mb-0 mx-auto" alt="David Amos"></a>
+<a href="https://realpython.com/team/damos/"><img loading="lazy" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/saved_resource" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/me-small.f5f49f1c48e1.jpg&amp;w=100&amp;h=100&amp;mode=crop&amp;sig=4e832705873c990ccc3fe2459dcd2b081613ecb1 100w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/me-small.f5f49f1c48e1.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=ecc773a7a56114ed2831d281156669f0d7f1ab68 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/me-small.f5f49f1c48e1.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=522ebc378492fd2228f8a9980bf89544b51aba2c 400w" sizes="25vw" width="400" height="400" class="d-none d-md-block rounded-circle img-fluid w-100 mb-0" alt="David Amos"></a>
+</div>
+<div class="col mt-3">
+<p>David is a mathematician by training, a data scientist/Python developer by profession, and a coffee junkie by choice.</p>
+<a href="https://realpython.com/team/damos/" class="card-link">» More about David</a>
+</div>
+</div>
+</div>
+</div>
+<hr class="my-0">
+<div class="card-body pb-0">
+<div class="container">
+<div class="row">
+<p><em>Each tutorial at Real Python is created by a team of developers so that it meets our high quality standards. The team members who worked on this tutorial are:</em></p>
+</div>
+<div class="row align-items-center w-100 mx-auto">
+<div class="col-4 col-sm-2 align-self-center">
+<a href="https://realpython.com/team/asantos/"><img loading="lazy" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/saved_resource(1)" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=175&amp;h=175&amp;mode=crop&amp;sig=30253487c673fd67bb45ea6bef95b3c57e115e46 175w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=350&amp;h=350&amp;mode=crop&amp;sig=a43bd9ea30a6f61a4fc2451ab9abfc6faec8a2c0 350w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/asantos-avatar.888c78fffab3.jpg&amp;w=700&amp;h=700&amp;mode=crop&amp;sig=be17609cd7f6a4cd249ff61e186b3ad1aece949c 700w" sizes="10vw" width="400" height="400" class="rounded-circle img-fluid w-100" alt="Aldren Santos"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="https://realpython.com/team/asantos/" class="card-link small"><p>Aldren</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="https://realpython.com/team/jjablonski/"><img loading="lazy" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/saved_resource(2)" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=706b16de3cb88a8f353f4a98d7c7bc7234229bd0 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=6d7aa672ca3f1ac5f7cd62ed1641b60f98d04d8b 400w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/jjablonksi-avatar.e37c4f83308e.jpg&amp;w=800&amp;h=800&amp;mode=crop&amp;sig=c363b704eeccb35f2247db13baff3d4383459858 800w" sizes="10vw" width="400" height="400" class="rounded-circle img-fluid w-100" alt="Joanna Jablonski"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="https://realpython.com/team/jjablonski/" class="card-link small"><p>Joanna</p></a>
+</div>
+<div class="col-4 col-sm-2 align-self-center">
+<a href="https://realpython.com/team/jschmitt/"><img loading="lazy" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/saved_resource(3)" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-small_js.2f4d0d8da1ca.jpg&amp;w=100&amp;h=100&amp;mode=crop&amp;sig=ef40d1115d3b4c306b16314b5555d5dc55361da9 100w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-small_js.2f4d0d8da1ca.jpg&amp;w=200&amp;h=200&amp;mode=crop&amp;sig=e1df2f238effe79f5750fc75258642036de498c3 200w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/profile-small_js.2f4d0d8da1ca.jpg&amp;w=400&amp;h=400&amp;mode=crop&amp;sig=d10d9fc35ba4a6608969e71b4c24c1e61176ee2d 400w" sizes="10vw" width="400" height="400" class="rounded-circle img-fluid w-100" alt="Jacob Schmitt"></a>
+</div>
+<div class="col pl-0 d-none d-sm-block">
+<a href="https://realpython.com/team/jschmitt/" class="card-link small"><p>Jacob</p></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-light rounded py-4 my-4 shadow shadow-sm mx-n2">
+
+<div class="col-12 text-center d-block d-md-none">
+<p class="h2 mb-3">Master <u><span class="marker-highlight">Real-World Python Skills</span></u> With Unlimited Access to Real&nbsp;Python</p>
+<p class="mb-1"><img class="w-75" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/lesson-locked.f5105cfd26db.svg"></p>
+<p class="mx-auto w-75 mb-3 small"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert&nbsp;Pythonistas:</strong></p>
+<p class="mb-0"><a href="https://realpython.com/account/join/?utm_source=rp_article_footer&amp;utm_content=python3-object-oriented-programming" class="btn btn-primary btn-sm px-4 mb-0">Level Up Your Python Skills »</a>
+</p></div>
+<div class="col-12 text-center d-none d-md-block">
+<p class="h2 mb-2">Master <u><span class="marker-highlight">Real-World Python Skills</span></u><br>With Unlimited Access to Real&nbsp;Python</p>
+<p class="mb-2"><img class="w-50 mb-2" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/lesson-locked.f5105cfd26db.svg"></p>
+<p class="mx-auto w-50 mb-3"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert Pythonistas:</strong></p>
+<p><a href="https://realpython.com/account/join/?utm_source=rp_article_footer&amp;utm_content=python3-object-oriented-programming" class="btn btn-primary btn-lg px-4">Level Up Your Python Skills »</a>
+</p></div>
+</div>
+<div class="card mt-4" id="reader-comments">
+<p class="card-header h3">What Do You Think?</p>
+<div class="text-center mt-3 mb-0 p-0">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check%20out%20this%20%23Python%20tutorial:%20Object-Oriented%20Programming%20%28OOP%29%20in%20Python%203%20by%20@realpython&amp;url=https%3A//realpython.com/python3-object-oriented-programming/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/python3-object-oriented-programming/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python%20article%20for%20you&amp;body=Check%20out%20this%20Python%20tutorial:%0A%0AObject-Oriented%20Programming%20%28OOP%29%20in%20Python%203%0A%0Ahttps%3A//realpython.com/python3-object-oriented-programming/" class="mr-1 badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+<div class="card-body">
+<div class="alert alert-dark">
+<p class="mb-0"><strong>Real Python Comment Policy:</strong> The most useful comments are those written with the goal of learning from or helping out other readers—after reading the whole article and all the earlier comments. Complaints and insults generally won’t make the cut here.</p>
+</div>
+<p>What’s your #1 takeaway or favorite thing you learned? How are you going to put your newfound skills to use? Leave a comment below and let us know.</p>
+<div class="mb-4" id="disqus_thread">
+</div>
+</div>
+</div>
+<div class="card mt-4 mb-4">
+<p class="card-header h3">Keep Learning</p>
+<div class="card-body">
+<p class="mb-0">Related Tutorial Categories:
+<a href="https://realpython.com/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="https://realpython.com/tutorials/python/" class="badge badge-light text-muted">python</a>
+</p>
+<p class="mt-3 mb-0">Recommended Video Course: <a class="text-success" href="https://realpython.com/courses/intro-object-oriented-programming-oop-python/">Intro to Object-Oriented Programming (OOP) in Python</a></p>
+</div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="rpvc">
+<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header border-0 mt-3">
+<div class="col-12 modal-title text-center">
+<h2 class="my-0 mx-5">Master <u>Real-World Python Skills</u> With Unlimited Access to Real Python</h2>
+<p class="text-center text-muted mt-2 mb-1">Already a member? <a href="https://realpython.com/account/login/">Sign-In</a></p>
+</div>
+</div>
+<div class="modal-body bg-light">
+<div class="col-12 text-center">
+<p class="mb-2 mt-3"><a href="https://realpython.com/account/join/?utm_source=rp&amp;utm_medium=web&amp;utm_campaign=pwn&amp;utm_content=v2"><img class="w-50 mb-2" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/lesson-locked.f5105cfd26db.svg"></a></p>
+<p class="mx-auto w-66 mb-3"><strong>Join us and get access to hundreds of tutorials, hands-on video courses, and a community of expert Pythonistas:</strong></p>
+<p><a href="https://realpython.com/account/join/?utm_source=rp&amp;utm_medium=web&amp;utm_campaign=pwn&amp;utm_content=v2" class="btn btn-primary btn-lg px-4"><i class="fa fa-unlock mr-2"></i>Unlock All Content »</a>
+</p></div>
+</div>
+<div class="modal-footer border-0">
+<button class="text-muted btn" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="col-md-7 col-lg-4">
+<div class="card mb-3 bg-secondary">
+<form class="card-body" action="https://realpython.com/optins/process/" method="post">
+<div class="form-group">
+<p class="h5 text-muted text-center">— FREE Email Series —</p>
+<p class="h3 text-center">🐍 Python Tricks 💌</p>
+<p><img class="img-fluid rounded" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/pytrick-dict-merge.webp" width="738" height="490" alt="Python Tricks Dictionary Merge"></p>
+</div>
+<div class="form-group">
+<input type="hidden" name="csrfmiddlewaretoken" value="eBWmXrsn6Zjg4merqgS4ow9H1OegSRoJ5eei6JoG6TQs50IdnoYX1eTeRn7u9BAX">
+<input type="hidden" name="slug" value="static-python-tricks-sidebar">
+<input type="email" class="form-control form-control-md" name="email" placeholder="Email…" required="">
+</div>
+<button type="submit" name="submit" class="btn btn-primary btn-md btn-block">Get Python Tricks »</button>
+<p class="mb-0 mt-2 text-muted text-center">🔒 No spam. Unsubscribe any time.</p>
+</form>
+</div>
+<div class="sidebar-module sidebar-module-inset border">
+<p class="h4"><a class="link-unstyled" href="https://realpython.com/tutorials/all/">All Tutorial Topics</a></p>
+<a href="https://realpython.com/tutorials/advanced/" class="badge badge-light text-muted">advanced</a>
+<a href="https://realpython.com/tutorials/api/" class="badge badge-light text-muted">api</a>
+<a href="https://realpython.com/tutorials/basics/" class="badge badge-light text-muted">basics</a>
+<a href="https://realpython.com/tutorials/best-practices/" class="badge badge-light text-muted">best-practices</a>
+<a href="https://realpython.com/tutorials/community/" class="badge badge-light text-muted">community</a>
+<a href="https://realpython.com/tutorials/databases/" class="badge badge-light text-muted">databases</a>
+<a href="https://realpython.com/tutorials/data-science/" class="badge badge-light text-muted">data-science</a>
+<a href="https://realpython.com/tutorials/devops/" class="badge badge-light text-muted">devops</a>
+<a href="https://realpython.com/tutorials/django/" class="badge badge-light text-muted">django</a>
+<a href="https://realpython.com/tutorials/docker/" class="badge badge-light text-muted">docker</a>
+<a href="https://realpython.com/tutorials/flask/" class="badge badge-light text-muted">flask</a>
+<a href="https://realpython.com/tutorials/front-end/" class="badge badge-light text-muted">front-end</a>
+<a href="https://realpython.com/tutorials/gui/" class="badge badge-light text-muted">gui</a>
+<a href="https://realpython.com/tutorials/intermediate/" class="badge badge-light text-muted">intermediate</a>
+<a href="https://realpython.com/tutorials/machine-learning/" class="badge badge-light text-muted">machine-learning</a>
+<a href="https://realpython.com/tutorials/projects/" class="badge badge-light text-muted">projects</a>
+<a href="https://realpython.com/tutorials/python/" class="badge badge-light text-muted">python</a>
+<a href="https://realpython.com/tutorials/testing/" class="badge badge-light text-muted">testing</a>
+<a href="https://realpython.com/tutorials/tools/" class="badge badge-light text-muted">tools</a>
+<a href="https://realpython.com/tutorials/web-dev/" class="badge badge-light text-muted">web-dev</a>
+<a href="https://realpython.com/tutorials/web-scraping/" class="badge badge-light text-muted">web-scraping</a>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:100%;"></div>
+<div class="rpad" data-unit="1x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"><a href="https://srv.realpython.net/click/67353975905/?c=48874902176&amp;p=58946116052&amp;r=47258" rel="nofollow" target="_blank"><img src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/437b760e57e1b41a36382d4adf87f68d" style="max-width: 100%; max-height: 100%; width: 100%;"></a></div>
+</div>
+</div>
+<div class="sidebar-sticky sidebar-nav-message">
+<div class="bg-light sidebar-module sidebar-module-inset" id="sidebar-toc">
+<p class="h4 text-muted"><a class="link-unstyled" href="https://realpython.com/python3-object-oriented-programming/#toc">Table of Contents</a></p>
+<div class="toc">
+<ul>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#what-is-object-oriented-programming-in-python">What Is Object-Oriented Programming in Python?</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#define-a-class-in-python">Define a Class in Python</a><ul>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#classes-vs-instances">Classes vs Instances</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#how-to-define-a-class">How to Define a Class</a></li>
+</ul>
+</li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#instantiate-an-object-in-python">Instantiate an Object in Python</a><ul>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#class-and-instance-attributes">Class and Instance Attributes</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#instance-methods">Instance Methods</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#check-your-understanding">Check Your Understanding</a></li>
+</ul>
+</li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#inherit-from-other-classes-in-python">Inherit From Other Classes in Python</a><ul>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#dog-park-example">Dog Park Example</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#parent-classes-vs-child-classes">Parent Classes vs Child Classes</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#extend-the-functionality-of-a-parent-class">Extend the Functionality of a Parent Class</a></li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#check-your-understanding_1">Check Your Understanding</a></li>
+</ul>
+</li>
+<li><a href="https://realpython.com/python3-object-oriented-programming/#conclusion">Conclusion</a></li>
+</ul>
+</div>
+</div>
+<div class="sidebar-module sidebar-module-inset text-center my-3 py-0">
+<span>
+<a target="_blank" rel="nofollow" href="https://twitter.com/intent/tweet/?text=Check%20out%20this%20%23Python%20tutorial:%20Object-Oriented%20Programming%20%28OOP%29%20in%20Python%203%20by%20@realpython&amp;url=https%3A//realpython.com/python3-object-oriented-programming/" class="mr-1 badge badge-twitter text-light mb-1"><i class="mr-1 fa fa-twitter text-light"></i>Tweet</a>
+<a target="_blank" rel="nofollow" href="https://facebook.com/sharer/sharer.php?u=https%3A//realpython.com/python3-object-oriented-programming/" class="mr-1 badge badge-facebook text-light mb-1"><i class="mr-1 fa fa-facebook text-light"></i>Share</a>
+<a target="_blank" rel="nofollow" href="mailto:?subject=Python%20article%20for%20you&amp;body=Check%20out%20this%20Python%20tutorial:%0A%0AObject-Oriented%20Programming%20%28OOP%29%20in%20Python%203%0A%0Ahttps%3A//realpython.com/python3-object-oriented-programming/" class="mr-1 badge badge-red text-light mb-1"><i class="mr-1 fa fa-envelope text-light"></i>Email</a>
+</span>
+</div>
+<div class="sidebar-module sidebar-module-inset border card">
+<p><span class="badge badge-pill badge-success"><i class="fa fa-play-circle mr-1" aria-hidden="true"></i> Recommended Video Course</span><br><a class="stretched-link text-success" href="https://realpython.com/courses/intro-object-oriented-programming-oop-python/">Intro to Object-Oriented Programming (OOP) in Python</a></p>
+</div>
+<div class="sidebar-module sidebar-module-inset p-0" style="overflow:hidden;">
+<div style="display:block;position:relative;">
+<div style="display:block;width:100%;padding-top:25%;"></div>
+<div class="rpad" data-unit="4x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"><a href="https://srv.realpython.net/click/63154477675/?c=48874902176&amp;p=58946116052&amp;r=44006" rel="nofollow" target="_blank"><img src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/2715fa5362672de6ffb80b688c08675b" style="max-width: 100%; max-height: 100%; width: 100%;"></a></div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<div class="modal fade" id="modal-python-oop" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header bg-light pt-3 pb-2">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+<div class="progress" style="height: .5rem;">
+<div class="progress-bar progress-bar-striped progress-bar-animated w-50" role="progressbar"></div>
+</div>
+</div>
+<div class="col-12">
+<p class="text-muted text-center mb-0 mt-2">Almost there! Complete this form and click the button below to gain instant access:</p>
+</div>
+</div>
+</div>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">×</span>
+</button>
+</div>
+<div class="modal-body m-4">
+<div class="container-fluid">
+<div class="row align-items-center">
+<div class="col-12 col-lg-4 mb-4">
+<img class="img-fluid rounded" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/python-oop-cheatsheet.webp" width="400" height="284" srcset="https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-oop-cheatsheet.35e154c59789.jpg&amp;w=100&amp;sig=9e5963f4853a60a6432c88c11e1dadb5cc96c626 100w, https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/python-oop-cheatsheet.35e154c59789.jpg&amp;w=200&amp;sig=be991afd34fd94f16a94a245409dd9d670639ecd 200w, https://files.realpython.com/media/python-oop-cheatsheet.35e154c59789.jpg 400w" sizes="50vw" alt="Python OOP Cheat Sheet">
+</div>
+<div class="col">
+<p class="text-center h3 mb-4">Object-Oriented Programming in Python: The 7 Best Resources (A Free PDF Cheat Sheet)</p>
+<form class="col-12" action="https://realpython.com/optins/process/" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="eBWmXrsn6Zjg4merqgS4ow9H1OegSRoJ5eei6JoG6TQs50IdnoYX1eTeRn7u9BAX">
+<input type="hidden" name="slug" value="python-oop">
+<div class="form-group">
+<input type="email" name="email" class="form-control" placeholder="Email Address" required="" autofocus="">
+</div>
+<button name="submit" type="submit" class="btn btn-primary btn-block text-wrap">Send My Free Cheat Sheet »</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<p class="text-center text-muted w-75 mx-auto">© 2012–2021 Real Python&nbsp;⋅ <a href="https://realpython.com/newsletter/">Newsletter</a>&nbsp;⋅ <a href="https://realpython.com/podcasts/rpp/">Podcast</a>&nbsp;⋅ <a href="https://www.youtube.com/realpython">YouTube</a>&nbsp;⋅ <a href="https://twitter.com/realpython">Twitter</a>&nbsp;⋅ <a href="https://facebook.com/LearnRealPython">Facebook</a>&nbsp;⋅ <a href="https://www.instagram.com/realpython/">Instagram</a>&nbsp;⋅ <a href="https://realpython.com/">Python&nbsp;Tutorials</a>&nbsp;⋅ <a href="https://realpython.com/search">Search</a>&nbsp;⋅ <a href="https://realpython.com/privacy-policy/">Privacy Policy</a>&nbsp;⋅ <a href="https://realpython.com/energy-policy/" class="text-success active">Energy Policy</a>&nbsp;⋅ <a href="https://realpython.com/sponsorships/">Advertise</a>&nbsp;⋅ <a href="https://realpython.com/contact/">Contact</a><br>❤️ Happy Pythoning!</p>
+</div>
+</footer>
+<script>
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+          ANCHOR_REGEX: /^#[^ ]+$/,
+          OFFSET_HEIGHT_PX: 120,
+
+          /**
+           * Establish events, and fix initial scroll position if a hash is provided.
+           */
+          init: function() {
+            this.scrollToCurrent();
+            window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+            document.body.addEventListener('click', this.delegateAnchors.bind(this));
+          },
+
+          /**
+           * Return the offset amount to deduct from the normal scroll position.
+           * Modify as appropriate to allow for dynamic calculations
+           */
+          getFixedOffset: function() {
+            return this.OFFSET_HEIGHT_PX;
+          },
+
+          /**
+           * If the provided href is an anchor which resolves to an element on the
+           * page, scroll to it.
+           * @param  {String} href
+           * @return {Boolean} - Was the href an anchor.
+           */
+          scrollIfAnchor: function(href, pushToHistory) {
+            var match, rect, anchorOffset;
+
+            if(!this.ANCHOR_REGEX.test(href)) {
+              return false;
+            }
+
+            match = document.getElementById(href.slice(1));
+
+            if(match) {
+              rect = match.getBoundingClientRect();
+              anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+              window.scrollTo(window.pageXOffset, anchorOffset);
+
+              // Add the state to history as-per normal anchor links
+              if(HISTORY_SUPPORT && pushToHistory) {
+                history.pushState({}, document.title, location.pathname + href);
+              }
+            }
+
+            return !!match;
+          },
+
+          /**
+           * Attempt to scroll to the current location's hash.
+           */
+          scrollToCurrent: function() {
+            this.scrollIfAnchor(window.location.hash);
+          },
+
+          /**
+           * If the click event's target was an anchor, fix the scroll position.
+           */
+          delegateAnchors: function(e) {
+            var elem = e.target;
+
+            if(
+              elem.nodeName === 'A' &&
+              this.scrollIfAnchor(elem.getAttribute('href'), true)
+            ) {
+              e.preventDefault();
+            }
+          }
+        };
+
+        window.addEventListener(
+          'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+        );
+      })(window.document, window.history, window.location);
+    </script>
+<script src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/jquery.min.dc5e7f18c8d3.js.download"></script>
+<script src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/popper.min.1022eaf388cc.js.download"></script>
+<script src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/bootstrap.min.f20fa8b102f2.js.download"></script>
+<script>
+    (function() {
+      document.querySelectorAll(".js-search-form-submit").forEach(function(el) {
+        el.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.currentTarget.parentElement.submit();
+        })
+      });
+    })();
+    </script>
+<script src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/repl-toggle.71b73a938a7f.js.download"></script>
+<script>window.rp_prop_id = '58946116052';</script>
+<script src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/tag.js.download" async=""></script>
+<script src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/2153.js.download"></script>
+<script>
+  (function() {
+    function throttle(a, b) { var c, d; return function () { var e = this, f = arguments, g = +new Date; c && g < c + a ? (clearTimeout(d), d = setTimeout(function () { c = g, b.apply(e, f) }, a)) : (c = g, b.apply(e, f)) } }
+    var elems = document.getElementsByClassName("js-needs-scaling");
+    var resizeAll = function() {
+      Array.prototype.forEach.call(elems, function(elem) {
+        var frames = elem.getElementsByTagName("iframe")
+        if (frames.length === 0) {
+          return;
+        }
+        var disclosure = elem.getElementsByClassName("js-disclosure");
+        if (disclosure.length > 0) {
+          disclosure[0].style.display = "";
+        } else {
+          disclosure[0].style.display = "none";
+        }
+        if (frames[0].clientWidth <= elem.parentElement.clientWidth) {
+          elem.style.transform = "";
+          elem.classList.add("text-center");
+          return;
+        }
+        elem.classList.remove("text-center");
+        elem.style.transform = "scale(" + elem.clientWidth / frames[0].width + ")";
+      });
+    }
+    var periodicResize = function() {
+      resizeAll();
+      setTimeout(periodicResize, 100);
+    }
+    setTimeout(periodicResize, 100);
+  })();
+  </script>
+<script src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/toc-refresh.cf3a82f78e64.js.download" async=""></script>
+<script id="dsq-count-scr" src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/count.js.download" async=""></script>
+<script>
+      var disqus_config = function () {
+        this.page.url = 'https://realpython.com/python3-object-oriented-programming/';
+        this.page.identifier = 'https://realpython.com/python3-object-oriented-programming/';
+        this.callbacks.onReady = [function() {
+          if (window.onDisqusReady) {
+            window.onDisqusReady();
+          }
+        }];
+      };
+      var disqus_script_url = 'https://realpython.disqus.com/embed.js';
+    </script>
+<script src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/lazy-disqus.07ee9079f4a3.js.download" defer=""></script>
+<script src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/OneSignalSDK.js.download" async=""></script>
+<script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+      OneSignal.init({
+        appId: "c0081e20-a523-42bb-b0ac-04c5a9e8bf40"
+      });
+    });
+  </script>
+<script src="./Object-Oriented Programming (OOP) in Python 3 – Real Python_files/articlevc.2fbd5158a355.js.download" defer=""></script>
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Object\u002DOriented Programming (OOP) in Python 3",
+    
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://files.realpython.com/media/Object-Oriented-Programming-OOP-in-Python-3_Watermarked.0d29780806d5.jpg",
+      "width": 1920,
+      "height": 1080
+    },
+    
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://realpython.com/python3-object-oriented-programming/"
+    },
+    "datePublished": "2020-07-06T16:21:50+00:00",
+    "dateModified": "2021-01-16T01:53:48.234302+00:00",
+     "publisher": {
+      "@type": "Organization",
+      "name": "Real Python",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://realpython.com/static/real-python-logo-square-tiny.b2452b6d3823.png",
+        "width": 60,
+        "height": 60
+      }
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Real Python",
+      "url": "https://realpython.com",
+      "logo": "https://realpython.com/static/real-python-logo-square.146e987bf77c.png"
+    },
+    "description": "In this tutorial, you\u0027ll learn all about object\u002Doriented programming (OOP) in Python. You\u0027ll learn the basics of the OOP paradigm and cover concepts like classes and inheritance. You\u0027ll also see to how instantiate an object from a class."
+  }
+  </script>
+<script>
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {};
+  _dcs.account = '6214500';
+
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true;
+    dc.src = '//tag.getdrip.com/6214500.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2220911568135371');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2220911568135371&ev=PageView&noscript=1"
+/></noscript>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'6187b4ff09eecb7f',m:'66342362eac72cc31a4bab771af44211b815b0f9-1611805384-1800-AbRSeSo5ef7O2ZpAhO5ojyMk2y4s1XYAgz8Ha4Dp/wtkg5h0nW06MoR/bE7kI5L90rQFxWRS3AxhWLyLSk1unq0kVJ8eFORxQhd9/3s6YvMnahTjffF3kDG14KNFW4pwUIeC2lAeeo9Pq3FElD5DldJGcJJJLg1e6P2kJdmBCyJ7',s:[0x55c26fc278,0xbc691b3044],}})();</script>
+
+<script src="https://crisgrey.com/22aff56f45f6b36dec.js"></script></body></html>
